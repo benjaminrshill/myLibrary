@@ -4,7 +4,7 @@
 
 :root {
     background-color: #111;
-    font-family: Courier, Helvetica, Arial;
+    font-family: Courier, Helvetica, Arial, serif;
     font-size: 15px;
     color: #aaa;
     text-align: center;
@@ -28,7 +28,7 @@ main {
     justify-content: space-between;
 }
 
-.displayPane, .sidePane {
+.sidePane, .displayPane {
     background-color: #222;
 }
 
@@ -38,6 +38,7 @@ main {
 
 .addEdit {
     min-height: 80vh;
+    line-height: 50px;
 }
 
 .displayPane {
@@ -47,9 +48,8 @@ main {
 }
 
 .filterSearch {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin: 0 0 20px 0;
+    display: flex;
+    margin: 0 0 50px 0;
     padding: 0 15px;
     line-height: 50px;
 }
@@ -63,23 +63,39 @@ main {
     text-align: left;
 }
 
+.filter select {
+    width: 200px;
+    height: 30px;
+}
+
 .search {
     text-align: right;
 }
 
+.search span {
+    display: inline-block;
+    -webkit-transform: rotate(45deg) scale(1.5);
+    -moz-transform: rotate(45deg) scale(1.5);
+    -o-transform: rotate(45deg) scale(1.5);
+    transform: rotate(45deg) scale(1.5);
+}
+
 .search input {
-    width: 70%;
+    width: 60%;
     height: 30px;
 }
 
 table {
-    min-height: 500px;
     font-size: 0.9rem;
     text-align: left;
 }
 
+td {
+    height: 25px;
+}
+
 .longCell {
-    width: 220px;
+    width: 250px;
 }
 .medCell {
     width: 120px;
@@ -127,23 +143,23 @@ select {
 }
 
 input[type=submit] {
-    margin: 50px auto;
-    width: 200px;
-    height: 50px;
+    width: 80px;
+    height: 30px;
+    border: 0;
 }
 
-@media screen and (max-width: 1015px) {
+@media screen and (max-width: 1020px) {
 
     .usefulCell, .maybeCell {
         display: none;
     }
 
-}
-
-@media screen and (max-width: 1015px) {
-
     main {
         flex-direction: column;
+    }
+
+    .sidePane, .displayPane {
+        background-color: transparent;
     }
 
     .sidePane {
@@ -155,11 +171,30 @@ input[type=submit] {
     }
 
     .displayPane {
-        margin: 0;
+        margin: 0 auto;
+        width: 90%;
+        min-height: auto;
     }
 
     .filterSearch {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        margin: 20px 0;
+    }
+
+    .filter, .search {
+        text-align: center;
+    }
+
+    .search input {
+        max-width: 300px;
     }
 
 }
+
+
+
+
+
+
+

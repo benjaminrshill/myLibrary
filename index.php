@@ -19,7 +19,7 @@
 
         <div class="addEdit">
             <form method="post">
-                display add or edit
+                Add / Edit
             </form>
         </div>
 
@@ -28,42 +28,53 @@
     <section class="displayPane">
 
         <div class="filterSearch">
-            <div class="maybeCell filter">
-                Filter by:
-                <span>none</span>
-                |
-                <span>genre</span>
-                |
-                <span>rating</span>
+
+            <div class="filter">
+                <form method="get">
+                    <div>
+                        <label for="filterBy">Filter by:</label>
+                        <select id="filterBy" name="filterBy">
+                            <option value="None">None</option>
+                            <option value="Fiction">Fiction</option>
+                            <option value="Non-fiction">Non-fiction</option>
+                        </select>
+                        <input type="submit" value="Filter!" class="smallSubmit" />
+                    </div>
+                </form>
             </div>
 
             <div class="search">
-                <input type="search" placeholder="Search">
+                <form method="get">
+                    <label for="searchBy"><span>&#9906;</span></label>
+                    <input type="search" id="searchBy" name="searchBy" placeholder="Which book would you like today?" />
+                    <input type="submit" value="Search" />
+                </form>
             </div>
+
         </div>
 
         <table>
             <tr>
                 <th class="vitalCell longCell">
-                    <a href="index.php?sort=title">Title</a>
+                    <a href="index.php?sortBy=title">Title</a>
                 </th>
                 <th class="vitalCell longCell">
-                    <a href="index.php?sort=author">Author</a>
+                    <a href="index.php?sortBy=author">Author</a>
                 </th>
                 <th class="usefulCell shortCell">
-                    <a href="index.php?sort=year">Year</a>
+                    <a href="index.php?sortBy=year">Year</a>
                 </th>
                 <th class="usefulCell medCell">
-                    <a href="index.php?sort=genre">Genre</a>
+                    <a href="index.php?sortBy=genre">Genre</a>
                 </th>
                 <th class="maybeCell shortCell centerCell">
-                    <a href="index.php?sort=rating">Rating</a>
+                    <a href="index.php?sortBy=rating">Rating</a>
                 </th>
                 <th class="vitalCell shortCell centerCell">
                     Edit
                 </th>
             </tr>
-            <?php displayLibrary($db); ?>
+            <?php displayLibrary($db, $filter, $order); ?>
         </table>
 
     </section>
@@ -72,3 +83,4 @@
 
 </body>
 </html>
+
