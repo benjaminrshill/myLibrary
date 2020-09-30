@@ -2,20 +2,27 @@
 
 $db = new PDO('mysql:host=db; dbname=myLibrary', 'root', 'password');
 
+/**
+ * Get the current filterBy GET request and add to SESSION
+ * or if no GET filterBy and SESSION already has a filterBy, do nothing
+ * or if no GET filterBy and no SESSION filterBy, set SESSION filterBy to 'rating' (always true)
+ */
 function filterIt() {
     if (isset($_GET['filterBy'])) {
         $_SESSION['filterBy'] = $_GET['filterBy'];
-        $_SESSION['filterBy'] = "rating = $_GET[filterBy]";
     } elseif (isset($_GET['searchBy'])) {
         $_SESSION['filterBy'] = $_GET['searchBy'];
-        $_SESSION['filterBy'] = "title LIKE '%$_GET[searchBy]%' OR author LIKE '%$_GET[searchBy]%'";
     } elseif (isset($_SESSION['filterBy'])) {
         return;
     } else {
-        $_SESSION['filterBy'] = 'rating = rating';
+        $_SESSION['filterBy'] = '';
     }
 }
 
+/**
+ * Get the current sortBy GET request and add to SESSION
+ * or if no GET sortBy, set SESSION sortBy to 'author'
+ */
 function sortIt() {
     if (isset($_GET['sortBy'])) {
         switch ($_GET['sortBy']) {
@@ -42,14 +49,22 @@ function sortIt() {
     }
 }
 
+/**
+ * Create connection to db, query db, echo table of items
+ *
+ * @param   object $db
+ */
 function displayLibrary(object $db) {
     try {
+        $filter = $_SESSION['filterBy'];
+        $sort = $_SESSION['sortBy'];
         $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        $displayQuery = $db->prepare(
-            "SELECT * FROM books WHERE $_SESSION[filterBy] ORDER BY $_SESSION[sortBy];"
-        );
-//        $displayQuery->bindParam(':filter', $_SESSION[filterBy]);
-//        $displayQuery->bindParam(':order', $_SESSION[sortBy]);
+        $displayQuery = $db->prepare("SELECT * FROM books
+                                        WHERE rating = :filter 
+                                        OR title LIKE CONCAT('%', :filter, '%')
+                                        OR author LIKE CONCAT('%', :filter, '%')
+                                        ORDER BY $sort;");
+        $displayQuery->bindParam(':filter', $filter);
         $displayQuery->execute();
         $myLibrary = $displayQuery->fetchAll();
         foreach ($myLibrary as $book) {
@@ -67,6 +82,7 @@ function displayLibrary(object $db) {
                 . urlencode($book['title'])
                 . '">~</a></td></tr>';
         }
+//        var_dump($displayQuery->debugDumpParams());
     } catch (PDOException $e) {
         echo 'Error: ' . $e->getMessage();
     }

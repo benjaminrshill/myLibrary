@@ -35,7 +35,7 @@ sortIt();
                 <div>
                     <label for="filterBy">Filter by:</label>
                     <select id="filterBy" name="filterBy">
-                        <option value="rating">Any</option>
+                        <option value="">Any</option>
                         <option value="5">5 star</option>
                         <option value="4">4 star</option>
                         <option value="3">3 star</option>
