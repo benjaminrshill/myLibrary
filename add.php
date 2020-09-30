@@ -1,5 +1,5 @@
 <div>
-    <h3>Add a book</h3>
+    <h3 class="noMobile">Add a book</h3>
     <div>
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" placeholder="What's it called?" required="required" />
@@ -10,7 +10,7 @@
     </div>
     <div>
         <label for="year">Year:</label>
-        <input type="number" id="year" name="year" placeholder="When was it published?" max="2020" required="required" />
+        <input type="number" id="year" name="year" placeholder="When was it published?" min "-999" max="2020" required="required" />
     </div>
     <div>
         <label for="rating">My rating:</label>

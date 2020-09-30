@@ -5,7 +5,7 @@ $db = new PDO('mysql:host=db; dbname=myLibrary', 'root', 'password');
 /**
  * Get the current filterBy GET request and add to SESSION
  * or if no GET filterBy and SESSION already has a filterBy, do nothing
- * or if no GET filterBy and no SESSION filterBy, set SESSION filterBy to 'rating' (always true)
+ * or if no GET filterBy and no SESSION filterBy, set SESSION filterBy to ''
  */
 function filterIt() {
     if (isset($_GET['filterBy'])) {

@@ -5,18 +5,20 @@
 :root {
     font-family: Courier, Helvetica, Arial, serif;
     font-size: 15px;
-    color: #aaa;
+    color: #a6bbff;
     text-align: center;
-    background-color: #333;
     scrollbar-color: #444 #252525;
 }
 
-/*div, header, section, main, form { outline: 1px solid gray; }*/
+body {
+    background-color: #222;
+}
 
 input, select {
     -webkit-appearance: none;
     appearance: none;
     font-family: Courier, Helvetica, Arial, serif;
+    background-color: #5d72b3;
     border: 0;
     border-radius: 10px;
 }
@@ -44,7 +46,7 @@ main {
 .sidePane, .displayPane {
     padding: 30px 0;
     height: calc(100vh - 160px); /* viewport height minus header (100) minus pane padding (60) */
-    background-color: #222;
+    background-color: #111;
 }
 
 .sidePane {
@@ -111,7 +113,7 @@ input[type=submit].tableSubmit {
     font-family: Courier, Helvetica, Arial, serif;
     font-size: 15px;
     font-weight: 700;
-    color: #aaa;
+    color: #a6bbff;
     text-align: left;
     background-color: transparent;
 }
@@ -165,9 +167,13 @@ input[type=submit] {
 }
 
 input[type=submit].addSubmit {
-    margin: 40px 0;
+    margin: 20px 0 10px 0;
     width: 100px;
     height: 40px;
+}
+
+.sidePaneToggle {
+    display: none;
 }
 
 @media screen and (max-width: 1390px) {
@@ -186,19 +192,35 @@ input[type=submit].addSubmit {
 
 @media screen and (max-width: 1100px) {
 
+    body {
+        background-color: #111;
+    }
+
     main {
         flex-direction: column;
     }
 
     .sidePane, .displayPane {
+        padding: 10px 0;
         height: auto;
         background-color: transparent;
     }
 
     .sidePane {
-        display: none;
         width: 100%;
         min-width: auto;
+        border-radius: 0;
+    }
+
+    .sidePane, .sidePaneToggle {
+        background-color: #000;
+    }
+
+    .sidePaneToggle {
+        cursor: pointer;
+        display: inline-block;
+        padding: 10px 0;
+        width: 100%;
     }
 
     .addEdit {
@@ -215,7 +237,7 @@ input[type=submit].addSubmit {
     .filterSearch {
         display: flex;
         flex-direction: column;
-        margin: 20px 0;
+        margin: 30px 0 0 0;
     }
 
     .filter, .search {
@@ -227,12 +249,32 @@ input[type=submit].addSubmit {
         line-height: 20px;
     }
 
+    .displayTable {
+        margin: 10px 0;
+    }
+
     .filter select {
         margin: 15px 0;
     }
 
     .filter select, .search input {
         max-width: 80vw;
+    }
+
+    main > input[type=checkbox] {
+        display: none;
+    }
+
+    main > input + .sidePane {
+        display: none;
+    }
+
+    main > input:checked + .sidePane {
+        display: block;
+    }
+
+    .noMobile {
+        display: none;
     }
 
 }

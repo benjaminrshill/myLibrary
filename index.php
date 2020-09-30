@@ -19,6 +19,9 @@ sortIt();
 
 <main>
 
+    <label for="toggler" class="sidePaneToggle">+ Add a book</label>
+    <input type="checkbox" id="toggler" name="toggler" />
+
     <section class="sidePane">
 
         <form method="post" class="addEdit">
@@ -49,8 +52,8 @@ sortIt();
             <form method="get" class="search">
                 <div>
                     <label for="searchBy"><span>&#9906;</span></label>
-                    <input type="search" id="searchBy" name="searchBy" placeholder="Which book would you like today?" />
-                    <input type="submit" value="Search" />
+                    <input type="search" id="searchBy" name="searchBy" placeholder="Which book today?" />
+                    <input type="submit" value="Search!" />
                 </div>
             </form>
 
