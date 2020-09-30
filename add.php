@@ -1,5 +1,5 @@
 <div>
-    <h3 class="noMobile">Add a book</h3>
+    <h3 class="noMobile">Add</h3>
     <div>
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" placeholder="What's it called?" required="required" />
@@ -23,8 +23,8 @@
             <option value="Non-fiction">Non-fiction</option>
         </select>
     </div>
-    <div>
-        <input type="submit" value="Add book!" class="addSubmit" />
+    <div class="">
+        <input type="submit" name="addBook" value="Add book!" class="addSubmit" />
     </div>
     <div>
         <?php if (isset($added)) { echo $added; } ?>

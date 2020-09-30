@@ -19,13 +19,19 @@ sortIt();
 
 <main>
 
-    <label for="toggler" class="sidePaneToggle">+ Add a book</label>
+    <label for="toggler" class="sidePaneToggle">+ Add/edit a book</label>
     <input type="checkbox" id="toggler" name="toggler" />
 
     <section class="sidePane">
 
         <form method="post" class="addEdit">
-            <?php require 'add.php' ?>
+            <?php
+            if (isset($_GET['edit'])) {
+                require 'edit.php';
+            } else {
+                require 'add.php';
+            }
+            ?>
         </form>
 
     </section>

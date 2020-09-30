@@ -177,7 +177,7 @@ input[type=submit] {
 }
 
 input[type=submit].addSubmit {
-    margin: 20px 0 10px 0;
+    margin: 20px 0 0 0;
     width: 100px;
     height: 40px;
 }
@@ -281,10 +281,6 @@ input[type=submit].addSubmit {
 
     main > input:checked + .sidePane {
         display: block;
-    }
-
-    .noMobile {
-        display: none;
     }
 
 }
