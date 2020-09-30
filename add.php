@@ -26,4 +26,7 @@
     <div>
         <input type="submit" value="Add book!" class="addSubmit" />
     </div>
+    <div>
+        <?php if (isset($added)) { echo $added; } ?>
+    </div>
 </div>

@@ -52,7 +52,7 @@ sortIt();
             <form method="get" class="search">
                 <div>
                     <label for="searchBy"><span>&#9906;</span></label>
-                    <input type="search" id="searchBy" name="searchBy" placeholder="Which book today?" />
+                    <input type="search" id="searchBy" name="searchBy" placeholder="Looking for something?" />
                     <input type="submit" value="Search!" />
                 </div>
             </form>
