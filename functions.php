@@ -87,3 +87,27 @@ function displayLibrary(object $db) {
         echo 'Error: ' . $e->getMessage();
     }
 }
+
+/**
+ * ADD A BOOK
+ */
+if (isset($_POST['title'])) {
+    try {
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $title = $_POST['title'];
+        $author = $_POST['author'];
+        $year = $_POST['year'];
+        $genre = $_POST['genre'];
+        $rating = $_POST['rating'];
+        $query = $db->prepare("INSERT INTO books (title, author, year, genre, rating) VALUE (:title, :author, :year, :genre, :rating);");
+        $query->bindParam(':title', $title);
+        $query->bindParam(':author', $author);
+        $query->bindParam(':year', $year);
+        $query->bindParam(':genre', $genre);
+        $query->bindParam(':rating', $rating);
+        $query->execute();
+        echo "New record created successfully!";
+    } catch(PDOException $e) {
+        echo 'Error: ' . $e->getMessage();
+    }
+}

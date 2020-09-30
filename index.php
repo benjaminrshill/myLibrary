@@ -22,7 +22,7 @@ sortIt();
     <section class="sidePane">
 
         <form method="post" class="addEdit">
-            <h3>Add a book</h3>
+            <?php require 'add.php' ?>
         </form>
 
     </section>
