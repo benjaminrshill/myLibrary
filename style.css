@@ -3,18 +3,31 @@
 }
 
 :root {
-    background-color: #111;
     font-family: Courier, Helvetica, Arial, serif;
     font-size: 15px;
     color: #aaa;
     text-align: center;
+    background-color: #333;
+    scrollbar-color: #444 #252525;
 }
 
-/*div, header, section, main { outline: 1px solid gray; }*/
+/*div, header, section, main, form { outline: 1px solid gray; }*/
+
+input, select {
+    -webkit-appearance: none;
+    appearance: none;
+    font-family: Courier, Helvetica, Arial, serif;
+    border: 0;
+    border-radius: 10px;
+}
 
 a {
     color: #eee;
     text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 10px 0 30px 0;
 }
 
 header {
@@ -29,47 +42,45 @@ main {
 }
 
 .sidePane, .displayPane {
+    padding: 30px 0;
+    height: calc(100vh - 160px); /* viewport height minus header (100) minus pane padding (60) */
     background-color: #222;
 }
 
 .sidePane {
     min-width: 400px;
-}
-
-.addEdit {
-    min-height: 80vh;
-    line-height: 50px;
+    border-top-right-radius: 50px;
 }
 
 .displayPane {
     margin: auto auto auto 20px;
     width: 100%;
-    min-height: 80vh;
+    border-top-left-radius: 50px;
 }
 
 .filterSearch {
     display: flex;
-    margin: 0 0 50px 0;
+    justify-content: space-between;
+    margin: 0 0 30px 0;
     padding: 0 15px;
     line-height: 50px;
 }
 
 .filter, .search {
-    width: 100%;
-    height: 50px;
-}
-
-.filter {
-    text-align: left;
+    margin: 0 0 0 20px;
+    min-width: 200px;
 }
 
 .filter select {
     width: 200px;
     height: 30px;
+    border: 0;
 }
 
 .search {
-    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
 }
 
 .search span {
@@ -81,13 +92,35 @@ main {
 }
 
 .search input {
-    width: 60%;
+    width: 250px;
     height: 30px;
 }
 
-table {
+.displayTable {
+    margin: 30px 0;
+    overflow-y: scroll;
+}
+
+.displayTable table {
     font-size: 0.9rem;
     text-align: left;
+}
+
+input[type=submit].tableSubmit {
+    padding: 0;
+    font-family: Courier, Helvetica, Arial, serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #aaa;
+    text-align: left;
+    background-color: transparent;
+}
+input[type=submit].centerCell {
+    text-align: center;
+}
+
+.centerCell {
+    text-align: center;
 }
 
 td {
@@ -104,39 +137,23 @@ td {
     width: 80px;
 }
 
-.centerCell {
-    text-align: center;
-}
-
-select {
-    -webkit-appearance: none;
-    appearance: none;
-    border: 0;
+.addEdit {
+    line-height: 30px;
 }
 
 .addEdit div {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    padding: 10px;
-}
-
-.addEdit div:nth-last-child(1) {
-    grid-template-columns: 1fr;
-}
-
-.addEdit label {
-    width: 150px;
-    text-align: right;
+    width: 90%;
 }
 
 .addEdit select {
     margin: 0;
     padding: 5px;
-    width: 465px;
-    height: 37px;
+    width: 90%;
+    height: 30px;
 }
 
 .addEdit input {
+    margin: 10px 0;
     padding: 5px;
     width: 100%;
     height: 20px;
@@ -145,25 +162,43 @@ select {
 input[type=submit] {
     width: 80px;
     height: 30px;
-    border: 0;
 }
 
-@media screen and (max-width: 1020px) {
+input[type=submit].addSubmit {
+    margin: 40px 0;
+    width: 100px;
+    height: 40px;
+}
 
-    .usefulCell, .maybeCell {
-        display: none;
+@media screen and (max-width: 1390px) {
+
+    .longCell {
+        width: 200px;
     }
+    .medCell {
+        width: 100px;
+    }
+    .shortCell {
+        width: 60px;
+    }
+
+}
+
+@media screen and (max-width: 1100px) {
 
     main {
         flex-direction: column;
     }
 
     .sidePane, .displayPane {
+        height: auto;
         background-color: transparent;
     }
 
     .sidePane {
+        display: none;
         width: 100%;
+        min-width: auto;
     }
 
     .addEdit {
@@ -172,7 +207,8 @@ input[type=submit] {
 
     .displayPane {
         margin: 0 auto;
-        width: 90%;
+        padding: 0;
+        width: 95%;
         min-height: auto;
     }
 
@@ -183,18 +219,28 @@ input[type=submit] {
     }
 
     .filter, .search {
-        text-align: center;
+        margin: 0 0 20px 0;
+        width: 100%;
     }
 
-    .search input {
-        max-width: 300px;
+    .filter {
+        line-height: 20px;
+    }
+
+    .filter select {
+        margin: 15px 0;
+    }
+
+    .filter select, .search input {
+        max-width: 80vw;
     }
 
 }
 
+@media screen and (max-width: 550px) {
 
+    .usefulCell, .maybeCell {
+        display: none;
+    }
 
-
-
-
-
+}

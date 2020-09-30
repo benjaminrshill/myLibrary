@@ -1,3 +1,9 @@
+<?php
+session_start();
+require 'functions.php';
+filterIt();
+sortIt();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +13,6 @@
 </head>
 <body>
 
-<?php require 'functions.php'; ?>
-
 <header>
     My Library
 </header>
@@ -17,11 +21,9 @@
 
     <section class="sidePane">
 
-        <div class="addEdit">
-            <form method="post">
-                Add / Edit
-            </form>
-        </div>
+        <form method="post" class="addEdit">
+            <h3>Add a book</h3>
+        </form>
 
     </section>
 
@@ -29,53 +31,60 @@
 
         <div class="filterSearch">
 
-            <div class="filter">
-                <form method="get">
-                    <div>
-                        <label for="filterBy">Filter by:</label>
-                        <select id="filterBy" name="filterBy">
-                            <option value="None">None</option>
-                            <option value="Fiction">Fiction</option>
-                            <option value="Non-fiction">Non-fiction</option>
-                        </select>
-                        <input type="submit" value="Filter!" class="smallSubmit" />
-                    </div>
-                </form>
-            </div>
+            <form method="get" class="filter">
+                <div>
+                    <label for="filterBy">Filter by:</label>
+                    <select id="filterBy" name="filterBy">
+                        <option value="rating">Any</option>
+                        <option value="5">5 star</option>
+                        <option value="4">4 star</option>
+                        <option value="3">3 star</option>
+                        <option value="2">2 star</option>
+                        <option value="1">1 star</option>
+                    </select>
+                    <input type="submit" value="Filter!" class="smallSubmit" />
+                </div>
+            </form>
 
-            <div class="search">
-                <form method="get">
+            <form method="get" class="search">
+                <div>
                     <label for="searchBy"><span>&#9906;</span></label>
                     <input type="search" id="searchBy" name="searchBy" placeholder="Which book would you like today?" />
                     <input type="submit" value="Search" />
-                </form>
-            </div>
+                </div>
+            </form>
 
         </div>
 
-        <table>
-            <tr>
-                <th class="vitalCell longCell">
-                    <a href="index.php?sortBy=title">Title</a>
-                </th>
-                <th class="vitalCell longCell">
-                    <a href="index.php?sortBy=author">Author</a>
-                </th>
-                <th class="usefulCell shortCell">
-                    <a href="index.php?sortBy=year">Year</a>
-                </th>
-                <th class="usefulCell medCell">
-                    <a href="index.php?sortBy=genre">Genre</a>
-                </th>
-                <th class="maybeCell shortCell centerCell">
-                    <a href="index.php?sortBy=rating">Rating</a>
-                </th>
-                <th class="vitalCell shortCell centerCell">
-                    Edit
-                </th>
-            </tr>
-            <?php displayLibrary($db, $filter, $order); ?>
-        </table>
+        <div class="displayTable">
+
+            <form method="get">
+                <table>
+                    <tr>
+                        <th class="vitalCell longCell">
+                            <input type="submit" name="sortBy" value="Title" class="tableSubmit" />
+                        </th>
+                        <th class="vitalCell longCell">
+                            <input type="submit" name="sortBy" value="Author" class="tableSubmit" />
+                        </th>
+                        <th class="usefulCell shortCell">
+                            <input type="submit" name="sortBy" value="Year" class="tableSubmit" />
+                        </th>
+                        <th class="usefulCell medCell">
+                            <input type="submit" name="sortBy" value="Genre" class="tableSubmit" />
+                        </th>
+                        <th class="maybeCell shortCell centerCell">
+                            <input type="submit" name="sortBy" value="Rating" class="tableSubmit centerCell" />
+                        </th>
+                        <th class="vitalCell shortCell centerCell">
+                            Edit
+                        </th>
+                    </tr>
+                    <?php displayLibrary($db); ?>
+                </table>
+            </form>
+
+        </div>
 
     </section>
 
@@ -83,4 +92,3 @@
 
 </body>
 </html>
-
