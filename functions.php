@@ -3,9 +3,9 @@
 $db = new PDO('mysql:host=db; dbname=myLibrary', 'root', 'password');
 
 /**
- * Get the current filterBy GET request and add to SESSION
- * or if no GET filterBy and SESSION already has a filterBy, do nothing
- * or if no GET filterBy and no SESSION filterBy, set SESSION filterBy to ''
+ * Get the current GET request (filter/search) and add to SESSION
+ * or if no GET filter/search and SESSION already has a filterBy, do nothing
+ * or if no GET filter/search and no SESSION filter/search, set SESSION filter/search to ''
  */
 function filterIt() {
     if (isset($_GET['filterBy'])) {
@@ -93,7 +93,7 @@ function displayLibrary(object $db) {
 }
 
 /**
- * ADD/EDIT A BOOK
+ * Add a book
  */
 if (isset($_POST['addBook'])) {
     try {
@@ -117,6 +117,9 @@ if (isset($_POST['addBook'])) {
     }
 }
 
+/**
+ * Give success or error message upon add or edit, and remove message from SESSION
+ */
 function notifyEdit() {
     if (isset($_SESSION['update'])) {
         echo $_SESSION['update'];

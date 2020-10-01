@@ -14,7 +14,7 @@ body {
     background-color: #262836;
 }
 
-input, select {
+input, select, button {
     -webkit-appearance: none;
     appearance: none;
     font-family: Courier, Helvetica, Arial, serif;

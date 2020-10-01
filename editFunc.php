@@ -3,7 +3,7 @@
 $db = new PDO('mysql:host=db; dbname=myLibrary', 'root', 'password');
 
 /**
- * EDIT
+ * If GET is set to edit with book title, fetch data for that book
  */
 if (isset($_GET['edit'])) {
     $title = $_GET['edit'];
@@ -15,6 +15,10 @@ if (isset($_GET['edit'])) {
     $toEdit = $displayItemQuery->fetchAll();
 }
 
+/**
+ * If POST is set from the edit page, update the book's fields with the user input
+ * and send to 'updated.php' for success/error message
+ */
 if (isset($_POST['editBook'])) {
     try {
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -24,16 +28,16 @@ if (isset($_POST['editBook'])) {
         $year = $_POST['year'];
         $genre = $_POST['genre'];
         $rating = $_POST['rating'];
-        $query = $db->prepare("UPDATE books
+        $editQuery = $db->prepare("UPDATE books
                             SET title = :title, author = :author, year = :year, genre = :genre, rating = :rating
                             WHERE title = :oldTitle;");
-        $query->bindParam(':oldTitle', $oldTitle);
-        $query->bindParam(':title', $title);
-        $query->bindParam(':author', $author);
-        $query->bindParam(':year', $year);
-        $query->bindParam(':genre', $genre);
-        $query->bindParam(':rating', $rating);
-        $query->execute();
+        $editQuery->bindParam(':oldTitle', $oldTitle);
+        $editQuery->bindParam(':title', $title);
+        $editQuery->bindParam(':author', $author);
+        $editQuery->bindParam(':year', $year);
+        $editQuery->bindParam(':genre', $genre);
+        $editQuery->bindParam(':rating', $rating);
+        $editQuery->execute();
         $_SESSION['update'] = "Updated successfully!";
         header('Location: updated.php');
     } catch (PDOException $e) {
