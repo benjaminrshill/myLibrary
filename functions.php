@@ -107,9 +107,9 @@ if (isset($_POST['addBook'])) {
         $query->bindParam(':genre', $genre);
         $query->bindParam(':rating', $rating);
         $query->execute();
-        return $added = "New record created successfully!";
+        return $added = "Added successfully!";
     } catch(PDOException $e) {
-        echo 'Error: ' . $e->getMessage();
+        return $added = 'Error: ' . $e->getMessage();
     }
 }
 
@@ -119,7 +119,8 @@ if (isset($_POST['addBook'])) {
 if (isset($_GET['edit'])) {
     $title = $_GET['edit'];
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    $displayItemQuery = $db->prepare("SELECT * FROM books WHERE title = '$title';");
+    $displayItemQuery = $db->prepare("SELECT * FROM books WHERE title = :title;");
+    $displayItemQuery->bindParam(':title', $title);
     $displayItemQuery->execute();
     $toEdit = $displayItemQuery->fetchAll();
 }
@@ -134,16 +135,17 @@ if (isset($_POST['editBook'])) {
         $rating = $_POST['rating'];
         $editQuery = $db->prepare("UPDATE books
                                     SET title = :title, author = :author, year = :year, genre = :genre, rating = :rating
-                                    WHERE title = '$title';");
+                                    WHERE title = :title;");
         $editQuery->bindParam(':title', $title);
         $editQuery->bindParam(':author', $author);
         $editQuery->bindParam(':year', $year);
         $editQuery->bindParam(':genre', $genre);
         $editQuery->bindParam(':rating', $rating);
         $editQuery->execute();
-        echo "Updated successfully!";
+        unset($_GET);
+        return $edited = "Updated successfully!";
     } catch (PDOException $e) {
-        echo 'Error: ' . $e->getMessage();
+        return $edited = 'Error: ' . $e->getMessage();
     }
 }
 
