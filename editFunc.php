@@ -17,7 +17,7 @@ if (isset($_GET['edit'])) {
 
 /**
  * If POST is set from the edit page, update the book's fields with the user input
- * and send to 'updated.php' for success/error message
+ * and redirect to 'updated.php' for success/error message
  */
 if (isset($_POST['editBook'])) {
     try {

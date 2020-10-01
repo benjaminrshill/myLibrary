@@ -2,19 +2,19 @@
     <h3>Add</h3>
     <div>
         <label for="title">Title:</label>
-        <input type="text" id="title" name="title" placeholder="What's it called?" required="required" />
+        <input type="text" id="title" name="title" required="required" />
     </div>
     <div>
         <label for="author">Author:</label>
-        <input type="text" id="author" name="author" placeholder="Who wrote it?" required="required" />
+        <input type="text" id="author" name="author" required="required" />
     </div>
     <div>
         <label for="year">Year:</label>
-        <input type="number" id="year" name="year" placeholder="When was it published?" min="-999" max="2020" required="required" />
+        <input type="number" id="year" name="year" min="-999" max="2020" required="required" />
     </div>
     <div>
         <label for="rating">My rating:</label>
-        <input type="number" id="rating" name="rating" placeholder="Rate it from 1 to 5!" min="1" max="5" />
+        <input type="number" id="rating" name="rating" min="1" max="5" />
     </div>
     <div>
         <label for="genre">Genre:</label>
