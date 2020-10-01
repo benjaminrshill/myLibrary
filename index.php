@@ -19,10 +19,13 @@ sortIt();
 
 <main>
 
+    <label for="toggler" class="sidePaneToggle">+ Add a book</label>
+    <input type="checkbox" id="toggler" name="toggler" />
+
     <section class="sidePane">
 
-        <form method="post" class="addEdit">
-            <h3>Add a book</h3>
+        <form method="post" class="addEdit addIt">
+            <?php require 'add.php'; ?>
         </form>
 
     </section>
@@ -49,8 +52,8 @@ sortIt();
             <form method="get" class="search">
                 <div>
                     <label for="searchBy"><span>&#9906;</span></label>
-                    <input type="search" id="searchBy" name="searchBy" placeholder="Which book would you like today?" />
-                    <input type="submit" value="Search" />
+                    <input type="search" id="searchBy" name="searchBy" />
+                    <input type="submit" value="Search!" />
                 </div>
             </form>
 
@@ -58,9 +61,9 @@ sortIt();
 
         <div class="displayTable">
 
-            <form method="get">
-                <table>
-                    <tr>
+            <table>
+                <tr>
+                    <form method="get">
                         <th class="vitalCell longCell">
                             <input type="submit" name="sortBy" value="Title" class="tableSubmit" />
                         </th>
@@ -76,13 +79,13 @@ sortIt();
                         <th class="maybeCell shortCell centerCell">
                             <input type="submit" name="sortBy" value="Rating" class="tableSubmit centerCell" />
                         </th>
-                        <th class="vitalCell shortCell centerCell">
-                            Edit
-                        </th>
-                    </tr>
-                    <?php displayLibrary($db); ?>
-                </table>
-            </form>
+                    </form>
+                    <th class="vitalCell shortCell centerCell">
+                        Edit
+                    </th>
+                </tr>
+                <?php displayLibrary($db); ?>
+            </table>
 
         </div>
 

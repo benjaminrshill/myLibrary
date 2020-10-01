@@ -3,9 +3,9 @@
 $db = new PDO('mysql:host=db; dbname=myLibrary', 'root', 'password');
 
 /**
- * Get the current filterBy GET request and add to SESSION
- * or if no GET filterBy and SESSION already has a filterBy, do nothing
- * or if no GET filterBy and no SESSION filterBy, set SESSION filterBy to 'rating' (always true)
+ * Get the current GET request (filter/search) and add to SESSION
+ * or if no GET filter/search and SESSION already has a filterBy, do nothing
+ * or if no GET filter/search and no SESSION filter/search, set SESSION filter/search to ''
  */
 function filterIt() {
     if (isset($_GET['filterBy'])) {
@@ -78,12 +78,51 @@ function displayLibrary(object $db) {
                 . $book['genre']
                 . '</td><td class="maybeCell centerCell">'
                 . $book['rating']
-                . '</td><td class="centerCell"><a href="?edit='
-                . urlencode($book['title'])
-                . '">~</a></td></tr>';
+                . '</td><td class="centerCell">
+                  <form method="get" action="edit.php">
+                  <button type="submit" name="edit" value="'
+                . $book['title']
+                . '" class="chooseEdit">edit
+                  </button>
+                  </form>
+                  </td></tr>';
         }
-//        var_dump($displayQuery->debugDumpParams());
     } catch (PDOException $e) {
         echo 'Error: ' . $e->getMessage();
+    }
+}
+
+/**
+ * Add a book
+ */
+if (isset($_POST['addBook'])) {
+    try {
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $title = $_POST['title'];
+        $author = $_POST['author'];
+        $year = $_POST['year'];
+        $genre = $_POST['genre'];
+        $rating = $_POST['rating'];
+        $query = $db->prepare("INSERT INTO books (title, author, year, genre, rating)
+                            VALUE (:title, :author, :year, :genre, :rating);");
+        $query->bindParam(':title', $title);
+        $query->bindParam(':author', $author);
+        $query->bindParam(':year', $year);
+        $query->bindParam(':genre', $genre);
+        $query->bindParam(':rating', $rating);
+        $query->execute();
+        $_SESSION['update'] = "Added successfully!";
+    } catch (PDOException $e) {
+        $_SESSION['update'] = 'Error: ' . $e->getMessage();
+    }
+}
+
+/**
+ * Give success or error message upon add or edit, and remove message from SESSION
+ */
+function notifyEdit() {
+    if (isset($_SESSION['update'])) {
+        echo $_SESSION['update'];
+        unset($_SESSION['update']);
     }
 }

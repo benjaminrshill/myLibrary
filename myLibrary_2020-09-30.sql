@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.31)
 # Database: myLibrary
-# Generation Time: 2020-09-28 12:14:22 +0000
+# Generation Time: 2020-09-30 16:09:11 +0000
 # ************************************************************
 
 
@@ -47,7 +47,13 @@ VALUES
 	(5,'Jurassic Park','Crichton, Michael',1990,'Fiction',5,NULL),
 	(6,'Eye of the World','Jordan, Robert',1990,'Fiction',5,NULL),
 	(7,'Small Gods','Pratchett, Terry',1992,'Fiction',4,NULL),
-	(9,'Memoirs of a Geisha','Golden, Arthur',1997,'Fiction',5,NULL);
+	(9,'Memoirs of a Geisha','Golden, Arthur',1997,'Fiction',5,NULL),
+	(10,'Iliad, The','Homer',-800,'Fiction',3,NULL),
+	(11,'Dance of the Voodoo Handbag, The','Rankin, Robert',1998,'Fiction',5,NULL),
+	(12,'On Liberty','Mill, John Stuart',1859,'Non-fiction',4,NULL),
+	(13,'Existentialism & Humanism','Sartre, Jean-Paul',1946,'Non-fiction',4,NULL),
+	(14,'Jungle Book, The','Kipling, Rudyard',1894,'Fiction',4,NULL),
+	(15,'Sapiens','Harari, Yuval Noah',2011,'Non-fiction',5,NULL);
 
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;
