@@ -51,7 +51,7 @@ sortIt();
 
             <form method="get" class="search">
                 <div>
-                    <label for="searchBy"><span>&#9906;</span></label>
+                    <img src="search.png" alt="search" />
                     <input type="search" id="searchBy" name="searchBy" />
                     <input type="submit" value="Search!" />
                 </div>

@@ -4,13 +4,13 @@
 
 :root {
     font-family: Courier, Helvetica, Arial, serif;
-    font-size: 15px;
     color: #a6bbff;
     text-align: center;
     scrollbar-color: #333 #111;
 }
 
 body {
+    font-size: 15px;
     background-color: #262836;
 }
 
@@ -52,6 +52,7 @@ main {
 
 .sidePane {
     min-width: 350px;
+    max-width: 550px;
     border-top-right-radius: 50px;
 }
 
@@ -80,18 +81,11 @@ main {
     border: 0;
 }
 
-.search {
-    display: flex;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-}
-
-.search span {
-    display: inline-block;
-    -webkit-transform: rotate(45deg) scale(1.5);
-    -moz-transform: rotate(45deg) scale(1.5);
-    -o-transform: rotate(45deg) scale(1.5);
-    transform: rotate(45deg) scale(1.5);
+.search img {
+    position: relative;
+    top: 5px;
+    margin: auto;
+    height: 15px;
 }
 
 ::-webkit-input-placeholder, ::placeholder {
@@ -194,7 +188,7 @@ input[type=submit].addSubmit {
     display: none;
 }
 
-@media screen and (max-width: 1390px) {
+@media (max-width: 1500px) {
 
     .longCell {
         width: 200px;
@@ -208,14 +202,23 @@ input[type=submit].addSubmit {
 
 }
 
-@media screen and (max-width: 1100px) {
+@media (max-width: 1200px) {
 
     body {
+        font-size: calc(1vh + 2vw);
         background-color: #111;
     }
 
     main {
         flex-direction: column;
+    }
+
+    header {
+        font-size: calc(2vh + 2vw);
+    }
+
+    input, select, button {
+        font-size: calc(1vh + 1vw);
     }
 
     .sidePane, .displayPane {
@@ -225,8 +228,9 @@ input[type=submit].addSubmit {
     }
 
     .sidePane {
-        width: 450px;
+        width: 100%;
         min-width: auto;
+        max-width: 100vw;
         border-radius: 0;
     }
 
@@ -242,7 +246,20 @@ input[type=submit].addSubmit {
     }
 
     .addEdit {
+        min-width: 100vw;
         min-height: 200px;
+    }
+
+    .addEdit select {
+        margin: 1vh 0;
+        padding: 1vh;
+        height: 4vh;
+    }
+
+    .addEdit input {
+        margin: 1vh 0;
+        padding: 1vh 0;
+        height: 2vh;
     }
 
     .displayPane {
@@ -267,16 +284,53 @@ input[type=submit].addSubmit {
         line-height: 20px;
     }
 
+    .search img {
+        height: calc(1vh + 1vw);
+    }
+
+    .search input {
+        width: 40vw;
+        height: 3vh;
+    }
+
     .displayTable {
         margin: 10px 0;
     }
 
+    .displayTable table {
+        font-size: calc(1vh + 2vw);
+    }
+
+    .longCell {
+        width: 40vw;
+    }
+    .medCell {
+        width: 25vw;
+    }
+    .shortCell {
+        width: 10vw;
+    }
+
+    .usefulCell, .maybeCell {
+        display: none;
+    }
+
     .filter select {
         margin: 15px 0;
+        height: 3vh;
     }
 
     .filter select, .search input {
         max-width: 80vw;
+    }
+
+    input[type=submit].tableSubmit {
+        font-size: calc(1vh + 2vw);
+    }
+
+    input[type=submit], input[type=submit].addSubmit {
+        width: 25vw;
+        height: 3vh;
     }
 
     main > input[type=checkbox] {
@@ -289,18 +343,6 @@ input[type=submit].addSubmit {
 
     main > input:checked + .sidePane {
         display: block;
-    }
-
-}
-
-@media screen and (max-width: 550px) {
-
-    .sidePane {
-        width: 100%;
-    }
-
-    .usefulCell, .maybeCell {
-        display: none;
     }
 
 }
