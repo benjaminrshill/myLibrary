@@ -24,14 +24,8 @@ sortIt();
 
     <section class="sidePane">
 
-        <form method="post" class="addEdit">
-            <?php
-            if (isset($_GET['edit'])) {
-                require 'edit.php';
-            } else {
-                require 'add.php';
-            }
-            ?>
+        <form method="post" class="addEdit addIt">
+            <?php require 'add.php'; ?>
         </form>
 
     </section>

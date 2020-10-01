@@ -153,6 +153,10 @@ td {
     line-height: 30px;
 }
 
+.editIt {
+    width: 400px;
+}
+
 .addEdit div {
     width: 90%;
 }

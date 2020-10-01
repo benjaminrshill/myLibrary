@@ -78,38 +78,61 @@ function displayLibrary(object $db) {
                 . $book['genre']
                 . '</td><td class="maybeCell centerCell">'
                 . $book['rating']
-                . '</td><td class="centerCell"><a href="?edit='
-                . urlencode($book['title'])
-                . '">~</a></td></tr>';
+                . '</td><td class="centerCell">
+                  <form method="get" action="edit.php">
+                  <button type="submit" name="edit" value="'
+                . $book['title']
+                . '" class="chooseEdit">edit
+                  </button>
+                  </form>
+                  </td></tr>';
         }
-//        var_dump($displayQuery->debugDumpParams());
     } catch (PDOException $e) {
         echo 'Error: ' . $e->getMessage();
     }
 }
 
 /**
- * ADD A BOOK
+ * ADD/EDIT A BOOK
  */
-if (isset($_POST['addBook'])) {
-    try {
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $title = $_POST['title'];
-        $author = $_POST['author'];
-        $year = $_POST['year'];
-        $genre = $_POST['genre'];
-        $rating = $_POST['rating'];
-        $query = $db->prepare("INSERT INTO books (title, author, year, genre, rating)
+if (isset($_POST['addBook']) || isset($_POST['editBook'])) {
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $title = $_POST['title'];
+    $author = $_POST['author'];
+    $year = $_POST['year'];
+    $genre = $_POST['genre'];
+    $rating = $_POST['rating'];
+    if (isset($_POST['addBook'])) {
+        try {
+            $query = $db->prepare("INSERT INTO books (title, author, year, genre, rating)
                                 VALUE (:title, :author, :year, :genre, :rating);");
-        $query->bindParam(':title', $title);
-        $query->bindParam(':author', $author);
-        $query->bindParam(':year', $year);
-        $query->bindParam(':genre', $genre);
-        $query->bindParam(':rating', $rating);
-        $query->execute();
-        return $added = "Added successfully!";
-    } catch(PDOException $e) {
-        return $added = 'Error: ' . $e->getMessage();
+            $query->bindParam(':title', $title);
+            $query->bindParam(':author', $author);
+            $query->bindParam(':year', $year);
+            $query->bindParam(':genre', $genre);
+            $query->bindParam(':rating', $rating);
+            $query->execute();
+            return $added = "Added successfully!";
+        } catch (PDOException $e) {
+            return $added = 'Error: ' . $e->getMessage();
+        }
+    } elseif (isset($_POST['editBook'])) {
+        try {
+            $query = $db->prepare("UPDATE books
+                                    SET title = :title, author = :author, year = :year, genre = :genre, rating = :rating
+                                    WHERE title = :title;");
+            $query->bindParam(':title', $title);
+            $query->bindParam(':author', $author);
+            $query->bindParam(':year', $year);
+            $query->bindParam(':genre', $genre);
+            $query->bindParam(':rating', $rating);
+            $query->execute();
+            unset($_GET);
+            $_SESSION['edited'] = "Updated successfully! Taking you back in a sec";
+            header('Location: updated.php');
+        } catch (PDOException $e) {
+            $_SESSION['edited'] = 'Error: ' . $e->getMessage();
+        }
     }
 }
 
@@ -125,30 +148,13 @@ if (isset($_GET['edit'])) {
     $toEdit = $displayItemQuery->fetchAll();
 }
 
-if (isset($_POST['editBook'])) {
-    try {
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $title = $_POST['title'];
-        $author = $_POST['author'];
-        $year = $_POST['year'];
-        $genre = $_POST['genre'];
-        $rating = $_POST['rating'];
-        $editQuery = $db->prepare("UPDATE books
-                                    SET title = :title, author = :author, year = :year, genre = :genre, rating = :rating
-                                    WHERE title = :title;");
-        $editQuery->bindParam(':title', $title);
-        $editQuery->bindParam(':author', $author);
-        $editQuery->bindParam(':year', $year);
-        $editQuery->bindParam(':genre', $genre);
-        $editQuery->bindParam(':rating', $rating);
-        $editQuery->execute();
-        unset($_GET);
-        return $edited = "Updated successfully!";
-    } catch (PDOException $e) {
-        return $edited = 'Error: ' . $e->getMessage();
-    }
-}
-
 if (isset($_POST['editCancel'])) {
     unset($_GET);
+    header('Location: index.php');
+}
+
+function notifyEdit() {
+    if (isset($_SESSION['edited'])) {
+        echo $_SESSION['edited'];
+    }
 }
