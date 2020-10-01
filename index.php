@@ -36,7 +36,7 @@ sortIt();
 
             <form method="get" class="filter">
                 <div>
-                    <img src="filter.png" alt="filter" />
+                    <img src="img/filter.png" alt="filter" />
                     <select id="filterBy" name="filterBy">
                         <option value="">Any</option>
                         <option value="5">5 star</option>
@@ -51,7 +51,7 @@ sortIt();
 
             <form method="get" class="search">
                 <div>
-                    <img src="search.png" alt="search" />
+                    <img src="img/search.png" alt="search" />
                     <input type="search" id="searchBy" name="searchBy" />
                     <input type="submit" value="Search!" />
                 </div>
@@ -82,6 +82,9 @@ sortIt();
                     </form>
                     <th class="vitalCell shortCell centerCell">
                         Edit
+                    </th>
+                    <th class="maybeCell vShortCell centerCell">
+                        Del
                     </th>
                 </tr>
                 <?php displayLibrary($db); ?>

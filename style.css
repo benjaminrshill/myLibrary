@@ -146,6 +146,9 @@ td {
 .shortCell {
     width: 80px;
 }
+.vShortCell {
+    width: 40px;
+}
 
 .addEdit {
     line-height: 30px;
@@ -198,6 +201,9 @@ input[type=submit].addSubmit {
     }
     .shortCell {
         width: 60px;
+    }
+    .vShortCell {
+        width: 30px;
     }
 
 }
