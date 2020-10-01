@@ -68,9 +68,9 @@ function displayLibrary(object $db) {
         $displayQuery->execute();
         $myLibrary = $displayQuery->fetchAll();
         foreach ($myLibrary as $book) {
-            echo '<tr><td>'
+            echo '<tr><td class="vitalCell">'
                 . $book['title']
-                . '</td><td>'
+                . '</td><td class="vitalCell">'
                 . $book['author']
                 . '</td><td class="usefulCell">'
                 . $book['year']
@@ -82,8 +82,13 @@ function displayLibrary(object $db) {
                   <form method="get" action="edit.php">
                   <button type="submit" name="edit" value="'
                 . $book['title']
-                . '" class="chooseEdit">edit
-                  </button>
+                . '">edit</button>
+                  </form>
+                  </td></td><td class="maybeCell centerCell">
+                  <form method="post">
+                  <button type="submit" name="delBook" value="'
+                . $book['title']
+                . '">x</button>
                   </form>
                   </td></tr>';
         }
@@ -124,5 +129,21 @@ function notifyEdit() {
     if (isset($_SESSION['update'])) {
         echo $_SESSION['update'];
         unset($_SESSION['update']);
+    }
+}
+
+/**
+ * Delete a book
+ */
+if (isset($_POST['delBook'])) {
+    try {
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $title = $_POST['delBook'];
+        $query = $db->prepare("DELETE FROM books WHERE title = :title;");
+        $query->bindParam(':title', $title);
+        $query->execute();
+        $_SESSION['update'] = "Deleted successfully!";
+    } catch (PDOException $e) {
+        $_SESSION['update'] = 'Error: ' . $e->getMessage();
     }
 }
