@@ -36,7 +36,7 @@ sortIt();
 
             <form method="get" class="filter">
                 <div>
-                    <label for="filterBy">Filter by:</label>
+                    <img src="filter.png" alt="filter" />
                     <select id="filterBy" name="filterBy">
                         <option value="">Any</option>
                         <option value="5">5 star</option>
