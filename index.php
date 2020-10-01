@@ -61,9 +61,9 @@ sortIt();
 
         <div class="displayTable">
 
-            <form method="get">
-                <table>
-                    <tr>
+            <table>
+                <tr>
+                    <form method="get">
                         <th class="vitalCell longCell">
                             <input type="submit" name="sortBy" value="Title" class="tableSubmit" />
                         </th>
@@ -79,13 +79,13 @@ sortIt();
                         <th class="maybeCell shortCell centerCell">
                             <input type="submit" name="sortBy" value="Rating" class="tableSubmit centerCell" />
                         </th>
-                        <th class="vitalCell shortCell centerCell">
-                            Edit
-                        </th>
-                    </tr>
-                    <?php displayLibrary($db); ?>
-                </table>
-            </form>
+                    </form>
+                    <th class="vitalCell shortCell centerCell">
+                        Edit
+                    </th>
+                </tr>
+                <?php displayLibrary($db); ?>
+            </table>
 
         </div>
 

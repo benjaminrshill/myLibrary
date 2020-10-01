@@ -10,7 +10,7 @@
     </div>
     <div>
         <label for="year">Year:</label>
-        <input type="number" id="year" name="year" placeholder="When was it published?" min "-999" max="2020" required="required" />
+        <input type="number" id="year" name="year" placeholder="When was it published?" min="-999" max="2020" required="required" />
     </div>
     <div>
         <label for="rating">My rating:</label>
@@ -27,6 +27,6 @@
         <input type="submit" name="addBook" value="Add book!" class="addSubmit" />
     </div>
     <div>
-        <?php if (isset($added)) { echo $added; } ?>
+        <?php notifyEdit(); ?>
     </div>
 </div>
