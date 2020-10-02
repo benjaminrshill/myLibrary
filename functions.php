@@ -35,8 +35,8 @@ function sortIt() {
             case 'Year':
                 $_SESSION['sortBy'] = 'year, author';
                 break;
-            case 'Genre':
-                $_SESSION['sortBy'] = 'genre, author';
+            case 'Category':
+                $_SESSION['sortBy'] = 'category, author';
                 break;
             case 'Rating':
                 $_SESSION['sortBy'] = 'rating DESC';
@@ -75,7 +75,7 @@ function displayLibrary(object $db) {
                 . '</td><td class="usefulCell">'
                 . $book['year']
                 . '</td><td class="usefulCell medCell">'
-                . $book['genre']
+                . $book['category']
                 . '</td><td class="maybeCell centerCell">'
                 . $book['rating']
                 . '</td><td class="centerCell">
@@ -106,14 +106,14 @@ if (isset($_POST['addBook'])) {
         $title = $_POST['title'];
         $author = $_POST['author'];
         $year = $_POST['year'];
-        $genre = $_POST['genre'];
+        $category = $_POST['category'];
         $rating = $_POST['rating'];
-        $query = $db->prepare("INSERT INTO books (title, author, year, genre, rating)
-                            VALUE (:title, :author, :year, :genre, :rating);");
+        $query = $db->prepare("INSERT INTO books (title, author, year, category, rating)
+                            VALUE (:title, :author, :year, :category, :rating);");
         $query->bindParam(':title', $title);
         $query->bindParam(':author', $author);
         $query->bindParam(':year', $year);
-        $query->bindParam(':genre', $genre);
+        $query->bindParam(':category', $category);
         $query->bindParam(':rating', $rating);
         $query->execute();
         $_SESSION['update'] = "Added successfully!";

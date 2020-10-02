@@ -37,8 +37,8 @@ require 'editFunc.php';
                 <input type="number" id="rating" name="rating" min="1" max="5" value="<?php echo $toEdit[0]['rating']; ?>" />
             </div>
             <div>
-                <label for="genre">Genre:</label>
-                <select id="genre" name="genre" required="required">
+                <label for="category">Category:</label>
+                <select id="category" name="category" required="required">
                     <option value="Fiction">Fiction</option>
                     <option value="Non-fiction">Non-fiction</option>
                 </select>

@@ -74,7 +74,7 @@ sortIt();
                             <input type="submit" name="sortBy" value="Year" class="tableSubmit" />
                         </th>
                         <th class="usefulCell medCell">
-                            <input type="submit" name="sortBy" value="Genre" class="tableSubmit" />
+                            <input type="submit" name="sortBy" value="Category" class="tableSubmit" />
                         </th>
                         <th class="maybeCell shortCell centerCell">
                             <input type="submit" name="sortBy" value="Rating" class="tableSubmit centerCell" />

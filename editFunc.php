@@ -26,16 +26,16 @@ if (isset($_POST['editBook'])) {
         $title = $_POST['title'];
         $author = $_POST['author'];
         $year = $_POST['year'];
-        $genre = $_POST['genre'];
+        $category = $_POST['category'];
         $rating = $_POST['rating'];
         $editQuery = $db->prepare("UPDATE books
-                            SET title = :title, author = :author, year = :year, genre = :genre, rating = :rating
+                            SET title = :title, author = :author, year = :year, category = :category, rating = :rating
                             WHERE title = :oldTitle;");
         $editQuery->bindParam(':oldTitle', $oldTitle);
         $editQuery->bindParam(':title', $title);
         $editQuery->bindParam(':author', $author);
         $editQuery->bindParam(':year', $year);
-        $editQuery->bindParam(':genre', $genre);
+        $editQuery->bindParam(':category', $category);
         $editQuery->bindParam(':rating', $rating);
         $editQuery->execute();
         $_SESSION['update'] = "Updated successfully!";
