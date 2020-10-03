@@ -20,14 +20,14 @@ if (isset($_GET['edit'])) {
  * and redirect to 'updated.php' for success/error message
  */
 if (isset($_POST['editBook'])) {
+    $oldTitle = $_SESSION['title'];
+    $title = $_POST['title'];
+    $author = $_POST['author'];
+    $year = $_POST['year'];
+    $category = $_POST['category'];
+    $rating = $_POST['rating'];
     try {
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $oldTitle = $_SESSION['title'];
-        $title = $_POST['title'];
-        $author = $_POST['author'];
-        $year = $_POST['year'];
-        $category = $_POST['category'];
-        $rating = $_POST['rating'];
         $editQuery = $db->prepare("UPDATE books
                             SET title = :title, author = :author, year = :year, category = :category, rating = :rating
                             WHERE title = :oldTitle;");
@@ -38,7 +38,7 @@ if (isset($_POST['editBook'])) {
         $editQuery->bindParam(':category', $category);
         $editQuery->bindParam(':rating', $rating);
         $editQuery->execute();
-        $_SESSION['update'] = "Updated successfully!";
+        $_SESSION['update'] = "$title updated successfully!";
         header('Location: updated.php');
     } catch (PDOException $e) {
         $_SESSION['update'] = 'Error: ' . $e->getMessage();
