@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.31)
 # Database: myLibrary
-# Generation Time: 2020-09-30 16:09:11 +0000
+# Generation Time: 2020-10-16 14:11:06 +0000
 # ************************************************************
 
 
@@ -30,7 +30,7 @@ CREATE TABLE `books` (
   `title` varchar(50) NOT NULL DEFAULT '',
   `author` varchar(50) NOT NULL DEFAULT '',
   `year` smallint(4) NOT NULL,
-  `genre` varchar(20) NOT NULL DEFAULT '',
+  `category` varchar(20) NOT NULL DEFAULT '',
   `rating` smallint(1) DEFAULT NULL,
   `series` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -39,7 +39,7 @@ CREATE TABLE `books` (
 LOCK TABLES `books` WRITE;
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
 
-INSERT INTO `books` (`id`, `title`, `author`, `year`, `genre`, `rating`, `series`)
+INSERT INTO `books` (`id`, `title`, `author`, `year`, `category`, `rating`, `series`)
 VALUES
 	(1,'On the Road','Kerouac, Jack',1957,'Fiction',5,NULL),
 	(2,'River Town','Hessler, Peter',2001,'Non-fiction',4,NULL),
@@ -49,11 +49,16 @@ VALUES
 	(7,'Small Gods','Pratchett, Terry',1992,'Fiction',4,NULL),
 	(9,'Memoirs of a Geisha','Golden, Arthur',1997,'Fiction',5,NULL),
 	(10,'Iliad, The','Homer',-800,'Fiction',3,NULL),
-	(11,'Dance of the Voodoo Handbag, The','Rankin, Robert',1998,'Fiction',5,NULL),
+	(11,'Dance of the Voodoo Handbag, The','Rankin, Robert',1998,'Fiction',4,NULL),
 	(12,'On Liberty','Mill, John Stuart',1859,'Non-fiction',4,NULL),
-	(13,'Existentialism & Humanism','Sartre, Jean-Paul',1946,'Non-fiction',4,NULL),
 	(14,'Jungle Book, The','Kipling, Rudyard',1894,'Fiction',4,NULL),
-	(15,'Sapiens','Harari, Yuval Noah',2011,'Non-fiction',5,NULL);
+	(15,'Sapiens','Harari, Yuval Noah',2011,'Non-fiction',5,NULL),
+	(16,'Children of Time','Tchaikovsky, Adrian',2015,'Fiction',4,NULL),
+	(17,'Blade Itself, The','Abercrombie, Joe',2006,'Fiction',5,NULL),
+	(18,'Lies of Locke Lamora, The','Lynch, Scott',2006,'Fiction',5,NULL),
+	(24,'Grapes of Wrath, The','Steinbeck, John',1939,'Fiction',5,NULL),
+	(26,'Catch-22','Heller, Joseph',1961,'Fiction',5,NULL),
+	(27,'Existentialism is a Humanism','Sartre, Jean-Paul',1946,'Non-fiction',4,NULL);
 
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;
