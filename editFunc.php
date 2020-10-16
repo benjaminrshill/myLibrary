@@ -20,6 +20,7 @@ if (isset($_GET['edit'])) {
  * and redirect to 'updated.php' for success/error message
  */
 if (isset($_POST['editBook'])) {
+    $_SESSION['lastActive'] = time();
     $oldTitle = $_SESSION['title'];
     $title = $_POST['title'];
     $author = $_POST['author'];

@@ -101,6 +101,7 @@ function displayLibrary(object $db) {
  * Add a book
  */
 if (isset($_POST['addBook'])) {
+    $_SESSION['lastActive'] = time();
     $title = $_POST['title'];
     $author = $_POST['author'];
     $year = $_POST['year'];
@@ -124,12 +125,14 @@ if (isset($_POST['addBook'])) {
 }
 
 /**
- * Give success or error message upon add or edit, and remove message from SESSION
+ * Give success or error message upon add/edit/delete, and remove message from SESSION after one minute
  */
 function notifyEdit() {
     if (isset($_SESSION['update'])) {
         echo $_SESSION['update'];
-//        unset($_SESSION['update']);
+        if (isset($_SESSION['lastActive']) && (time() - $_SESSION['lastActive'] > 10)) {
+            unset($_SESSION['update']);
+        }
     }
 }
 
@@ -145,6 +148,7 @@ if (isset($_POST['delBook'])) {
  * Confirm delete
  */
 if (isset($_POST['confirmDelete'])) {
+    $_SESSION['lastActive'] = time();
     $title = $_SESSION['delBook'];
     try {
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
