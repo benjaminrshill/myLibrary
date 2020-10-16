@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.31)
 # Database: myLibrary
-# Generation Time: 2020-10-02 12:07:12 +0000
+# Generation Time: 2020-10-16 14:11:06 +0000
 # ************************************************************
 
 
@@ -51,13 +51,14 @@ VALUES
 	(10,'Iliad, The','Homer',-800,'Fiction',3,NULL),
 	(11,'Dance of the Voodoo Handbag, The','Rankin, Robert',1998,'Fiction',4,NULL),
 	(12,'On Liberty','Mill, John Stuart',1859,'Non-fiction',4,NULL),
-	(13,'Existentialism and Humanism','Sartre, Jean-Paul',1946,'Fiction',4,NULL),
 	(14,'Jungle Book, The','Kipling, Rudyard',1894,'Fiction',4,NULL),
 	(15,'Sapiens','Harari, Yuval Noah',2011,'Non-fiction',5,NULL),
 	(16,'Children of Time','Tchaikovsky, Adrian',2015,'Fiction',4,NULL),
 	(17,'Blade Itself, The','Abercrombie, Joe',2006,'Fiction',5,NULL),
 	(18,'Lies of Locke Lamora, The','Lynch, Scott',2006,'Fiction',5,NULL),
-	(24,'Grapes of Wrath, The','Steinbeck, John',1939,'Fiction',5,NULL);
+	(24,'Grapes of Wrath, The','Steinbeck, John',1939,'Fiction',5,NULL),
+	(26,'Catch-22','Heller, Joseph',1961,'Fiction',5,NULL),
+	(27,'Existentialism is a Humanism','Sartre, Jean-Paul',1946,'Non-fiction',4,NULL);
 
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;

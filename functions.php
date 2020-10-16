@@ -101,13 +101,14 @@ function displayLibrary(object $db) {
  * Add a book
  */
 if (isset($_POST['addBook'])) {
+    $_SESSION['lastActive'] = time();
+    $title = $_POST['title'];
+    $author = $_POST['author'];
+    $year = $_POST['year'];
+    $category = $_POST['category'];
+    $rating = $_POST['rating'];
     try {
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $title = $_POST['title'];
-        $author = $_POST['author'];
-        $year = $_POST['year'];
-        $category = $_POST['category'];
-        $rating = $_POST['rating'];
         $query = $db->prepare("INSERT INTO books (title, author, year, category, rating)
                             VALUE (:title, :author, :year, :category, :rating);");
         $query->bindParam(':title', $title);
@@ -116,34 +117,49 @@ if (isset($_POST['addBook'])) {
         $query->bindParam(':category', $category);
         $query->bindParam(':rating', $rating);
         $query->execute();
-        $_SESSION['update'] = "Added successfully!";
+        $_SESSION['update'] = "$title added successfully!";
     } catch (PDOException $e) {
         $_SESSION['update'] = 'Error: ' . $e->getMessage();
     }
+    header('Location: index.php');
 }
 
 /**
- * Give success or error message upon add or edit, and remove message from SESSION
+ * Give success or error message upon add/edit/delete, and remove message from SESSION after one minute
  */
 function notifyEdit() {
     if (isset($_SESSION['update'])) {
         echo $_SESSION['update'];
-        unset($_SESSION['update']);
+        if (isset($_SESSION['lastActive']) && (time() - $_SESSION['lastActive'] > 10)) {
+            unset($_SESSION['update']);
+        }
     }
 }
 
 /**
- * Delete a book
+ * Delete book: send to confirmation page
  */
 if (isset($_POST['delBook'])) {
+    $_SESSION['delBook'] = $_POST['delBook'];
+    header('Location: delete.php');
+}
+
+/**
+ * Confirm delete
+ */
+if (isset($_POST['confirmDelete'])) {
+    $_SESSION['lastActive'] = time();
+    $title = $_SESSION['delBook'];
     try {
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $title = $_POST['delBook'];
         $query = $db->prepare("DELETE FROM books WHERE title = :title;");
         $query->bindParam(':title', $title);
         $query->execute();
-        $_SESSION['update'] = "Deleted successfully!";
+        $_SESSION['update'] = "$title deleted successfully!";
     } catch (PDOException $e) {
         $_SESSION['update'] = 'Error: ' . $e->getMessage();
     }
+    header('Location: index.php');
+} elseif (isset($_POST['cancelDelete'])) {
+    header('Location: index.php');
 }
