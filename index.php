@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'functions.php';
+require_once 'functions/functions.php';
 filterIt();
 sortIt();
 ?>
@@ -9,7 +9,7 @@ sortIt();
 <head>
     <title>My Library</title>
     <link rel="stylesheet" type="text/css" href="normalize.css" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
 

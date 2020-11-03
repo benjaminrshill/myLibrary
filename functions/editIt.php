@@ -1,7 +1,4 @@
 <?php
-
-$db = new PDO('mysql:host=db; dbname=myLibrary', 'root', 'password');
-
 /**
  * If GET is set to edit with book title, fetch data for that book
  */
