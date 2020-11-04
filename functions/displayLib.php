@@ -31,13 +31,13 @@ function displayLibrary(object $db) {
                 . '</td><td class="centerCell">
                   <form method="get" action="./edit.php">
                   <button type="submit" name="edit" value="'
-                . $book['title']
+                . $book['id']
                 . '">edit</button>
                   </form>
                   </td></td><td class="maybeCell centerCell">
                   <form method="post">
                   <button type="submit" name="delBook" value="'
-                . $book['title']
+                . $book['id']
                 . '">x</button>
                   </form>
                   </td></tr>';

@@ -19,7 +19,7 @@ require_once 'functions/functions.php';
 
         <form method="post" class="addEdit">
             <div>
-                <h3>Are you sure you want to delete <?php echo $_SESSION['delBook']?>?</h3>
+                <h3>Are you sure you want to delete <?php echo $_SESSION['delTitle']?>?</h3>
                 <div>
                     <input type="submit" name="confirmDelete" value="Delete!" class="addSubmit" />
                 </div>

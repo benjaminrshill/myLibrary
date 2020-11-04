@@ -20,6 +20,7 @@ require_once 'functions/functions.php';
     <form method="post" class="addEdit">
         <div>
             <h3>Update a book</h3>
+            <input type="hidden" id="bookId" name="bookId" value="<?php echo $toEdit[0]['id']; ?>" />
             <div>
                 <label for="title">Title:</label>
                 <input type="text" id="title" name="title" value="<?php echo $toEdit[0]['title']; ?>" required="required" />
@@ -34,7 +35,7 @@ require_once 'functions/functions.php';
             </div>
             <div>
                 <label for="rating">My rating:</label>
-                <input type="number" id="rating" name="rating" min="1" max="5" value="<?php echo $toEdit[0]['rating']; ?>" />
+                <input type="number" id="rating" name="rating" min="1" max="5" value="<?php echo $toEdit[0]['rating']; ?>" required="required" />
             </div>
             <div>
                 <label for="category">Category:</label>

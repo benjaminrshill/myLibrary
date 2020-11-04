@@ -3,11 +3,11 @@
  * If GET is set to edit with book title, fetch data for that book
  */
 if (isset($_GET['edit'])) {
-    $title = $_GET['edit'];
-    $_SESSION['title'] = $title;
+    $bookId = $_GET['edit'];
+    $_SESSION['bookId'] = $bookId;
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    $displayItemQuery = $db->prepare("SELECT * FROM books WHERE title = :title;");
-    $displayItemQuery->bindParam(':title', $title);
+    $displayItemQuery = $db->prepare("SELECT * FROM books WHERE id = :bookId;");
+    $displayItemQuery->bindParam(':bookId', $bookId);
     $displayItemQuery->execute();
     $toEdit = $displayItemQuery->fetchAll();
 }
@@ -18,7 +18,7 @@ if (isset($_GET['edit'])) {
  */
 if (isset($_POST['editBook'])) {
     $_SESSION['lastActive'] = time();
-    $oldTitle = $_SESSION['title'];
+    $bookId = $_POST['bookId'];
     $title = $_POST['title'];
     $author = $_POST['author'];
     $year = $_POST['year'];
@@ -28,8 +28,8 @@ if (isset($_POST['editBook'])) {
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $editQuery = $db->prepare("UPDATE books
                             SET title = :title, author = :author, year = :year, category = :category, rating = :rating
-                            WHERE title = :oldTitle;");
-        $editQuery->bindParam(':oldTitle', $oldTitle);
+                            WHERE id = :bookId;");
+        $editQuery->bindParam(':bookId', $bookId);
         $editQuery->bindParam(':title', $title);
         $editQuery->bindParam(':author', $author);
         $editQuery->bindParam(':year', $year);
